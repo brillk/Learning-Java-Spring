@@ -9,8 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
+// Ctrl + Shift + T = 새로운 테스트 만들기
+    private final MemberRepository memberRepository;
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    // 파일 마다 새로운 객체를 생성하는 게 아닌 선언된 곳을 가져온다.
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    } // 이 경우를 Dependency Injection? DI
 
     // 회원가입
     public Long join(Member member) {
