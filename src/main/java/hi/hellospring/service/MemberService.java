@@ -2,11 +2,8 @@ package hi.hellospring.service;
 
 import hi.hellospring.domain.Member;
 import hi.hellospring.repository.MemberRepository;
-import hi.hellospring.repository.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +15,8 @@ import java.util.Optional;
 
 
  //@을 붙이면 스프링이 이제 인식할 수 있어서 spring 컨테이너에서 memberService에 와사바리(등록)를 건다
+ //jpa를 쓰려면 transaction이 있어야 함
+@Transactional
 public class MemberService {
 // Ctrl + Shift + T = 새로운 테스트 만들기
     private final MemberRepository memberRepository;

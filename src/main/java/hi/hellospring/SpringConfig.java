@@ -1,13 +1,25 @@
 package hi.hellospring;
 
+import hi.hellospring.repository.JdbcTemplateMemberRepository;
+import hi.hellospring.repository.JpaMemberRepository;
 import hi.hellospring.repository.MemberRepository;
 import hi.hellospring.repository.MemoryMemberRepository;
 import hi.hellospring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+
+    private EntityManager em;
+    @Autowired
+    public SpringConfig(EntityManager em) {
+        this.em = em;
+    }
 
     // 생성자 주입 으로 DI 설정
     @Bean
@@ -24,7 +36,8 @@ public class SpringConfig {
     //이렇게 자바코드로 스프링 빈을 쓰게 되면 변수를 하나만 바꿔도 모두 적용되기 때문에 편하다
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+
+        return new JpaMemberRepository(em);
     }
 
 }

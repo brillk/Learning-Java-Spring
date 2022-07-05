@@ -1,16 +1,11 @@
 package hi.hellospring.service;
 
 import hi.hellospring.domain.Member;
-import hi.hellospring.repository.MemberRepository;
 import hi.hellospring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
-
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,7 +16,8 @@ class MemberServiceTest {
     MemoryMemberRepository memberRepository;
 
     // 객체를 파일마다 만든다면 같은 값이 안 들어갈 수 있기 때문에
-    // 이렇게 써보자자    @BeforeEach
+    // 이렇게 써보자
+    @BeforeEach
     public void beforeEach() {
         memberRepository = new MemoryMemberRepository();
         memberService = new MemberService(memberRepository);
